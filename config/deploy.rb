@@ -11,17 +11,10 @@ server '192.169.1.11', roles: %w{app}
 set :ping_url, "http://192.169.1.11/ping"
 
 namespace :deploy do
-  task :start do
-    on roles(:all) do |host|
-      execute "touch #{current_path}/tmp/restart.txt"
-    end
-    
-  end
+  task :start do ; end
   task :stop do ; end
-  task :restart do
-    on roles(:all) do |host|
-      execute "touch #{current_path}/tmp/restart.txt"
-    end
+  task :restart, roles: :all, except: { no_release: true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
 
