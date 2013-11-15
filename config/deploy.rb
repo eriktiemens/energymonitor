@@ -8,6 +8,24 @@ role :all, %w{pi@192.169.1.11}
 
 server '192.169.1.11', roles: %w{app}
 
+set :ping_url, "http://192.169.1.11/ping"
+
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, roles: :all, except: { no_release: true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
+
+namespace :deploy do
+  task :ping do
+    system "curl --silent #{fetch(:ping_url)}"
+  end
+end
+
+after "deploy:restart", "deploy:ping"
+
 desc "Check that we can access everything"
 task :check_write_permissions do
   on roles(:all) do |host|

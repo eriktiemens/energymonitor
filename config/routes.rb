@@ -8,6 +8,8 @@ Energymonitor::Application.routes.draw do
   
   get 'actual_usage', :to => 'actual_usage#actual_data'
   
+   get 'ping' => proc {|env| [200, {}, []] }
+   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

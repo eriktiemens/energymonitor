@@ -41,7 +41,11 @@ gem 'flot-rails'
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'capistrano-rails', '~> 1.0.0'
+gem 'rvm-capistrano'
+gem 'capistrano-rvm'
+ gem 'capistrano', group: :development
+ gem 'capistrano-bundler'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
