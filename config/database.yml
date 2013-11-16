@@ -4,9 +4,13 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 development:
-  adapter: sqlite3
-  database: db/youless.db
+  adapter: mysql2
+  encodin: utf8
+  database: youless
   pool: 5
+  username: root
+  password: Welkom123%%
+  socket: /tmp/mysql.sock
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
