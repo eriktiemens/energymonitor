@@ -11,8 +11,16 @@ server '192.169.1.11', roles: %w{app}
 set :ping_url, "http://192.169.1.11/ping"
 
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
+  task :start do 
+    on roles(:all) do |host|
+      execute "passenger start --daemonize  --port 3000"
+    end
+  end
+  task :stop do 
+    on roles(:all) do |host|
+      execute "passenger stop"
+    end
+  end
   task :restart do
     on roles(:all) do |host|
       execute "touch #{current_path}/tmp/restart.txt"
