@@ -22,17 +22,17 @@ namespace :deploy do
     end
   end  
 
-  
+
   task :restart do
     on roles(:all) do |host|
-     run <<-CMD
+     execute <<-CMD
       if [[ -f #{current_path}/tmp/pids/passenger.3000.pid ]];
       then
         cd #{current_path} && passenger stop -p 3000;
       fi
     CMD
  
-    run "cd #{current_path} && passenger start -p 3000 -d"
+    execute "cd #{current_path} && passenger start -p 3000 -d"
     end
   end  
 end
