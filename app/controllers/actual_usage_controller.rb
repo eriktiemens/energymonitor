@@ -5,7 +5,7 @@ class ActualUsageController < ApplicationController
      result =YoulessData.order("created_at DESC").first
      
      respond_to do |format|
-       format.json {render :json => {"value" => result.pwr, "date"=>result.created_at}}
+       format.json {render :json => {"value" => result.pwr, "date"=> strftime(result.created_at.strftime("%d/%m/%Y %H:%m:%s"), )}}
      end
      
    end
