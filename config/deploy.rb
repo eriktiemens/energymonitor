@@ -6,35 +6,18 @@ set :deploy_to, '/var/local/server'
 
 role :all, %w{pi@192.169.1.11}
 
-server '192.169.1.11', roles: %w{all}
+server '192.169.1.11', roles: %w{app}
 
 set :ping_url, "http://192.169.1.11/ping"
 
 namespace :deploy do
-  task :start do 
-    on roles(:all) do |host|
-      execute "passenger start --daemonize  --port 3000"
-    end
-  end
-  task :stop do 
-    on roles(:all) do |host|
-      execute "passenger stop"
-    end
-  end  
-
-
+  task :start do ; end
+  task :stop do ; end
   task :restart do
     on roles(:all) do |host|
-     execute <<-CMD
-      if [[ -f #{current_path}/tmp/pids/passenger.3000.pid ]];
-      then
-        cd #{current_path} && passenger stop -p 3000;
-      fi
-    CMD
- 
-    execute "cd #{current_path} && passenger start -p 3000 -d"
+      execute "touch #{current_path}/tmp/restart.txt"
     end
-  end  
+  end   
 end
 
 namespace :deploy do

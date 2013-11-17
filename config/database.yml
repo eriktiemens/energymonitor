@@ -8,8 +8,9 @@ development:
   encodin: utf8
   database: youless
   pool: 5
-  username: root
-  password: Welkom123%%
+  host: 192.169.1.11
+  username: youless
+  password: youless
   socket: /tmp/mysql.sock
   timeout: 5000
 
